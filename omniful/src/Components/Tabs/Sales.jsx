@@ -8,8 +8,11 @@ import magento from "/magento.png";
 import opencart from "/opencart.png";
 import arabic from "/arabic.png";
 import { SalesSidebar } from "./SalesSidebar";
+import { useSelector } from "react-redux";
 
 export const Sales = ({ openSidebar }) => {
+  const state = useSelector((state) => state);
+  const { opposite } = state;
   const [image, setImage] = useState("");
   const [salesTab, setSalesTab] = useState(false);
 
@@ -24,37 +27,71 @@ export const Sales = ({ openSidebar }) => {
           display: "flex",
           gap: "20px",
           margin: "24px 0 5px 16px",
+          position: "relative",
         }}
       >
         <div
-          style={{
-            width: "8px",
-            height: "20px",
-            backgroundColor: "#FFC82A",
-          }}
+          style={
+            !opposite
+              ? {
+                  width: "8px",
+                  height: "20px",
+                  backgroundColor: "#FFC82A",
+                }
+              : {
+                  width: "8px",
+                  height: "20px",
+                  backgroundColor: "#FFC82A",
+                  position: "absolute",
+                  right: "20px",
+                }
+          }
         ></div>
         <div>
           <h1
-            style={{
-              fontWeight: 500,
-              fontSize: "14px",
-              lineHeight: "20px",
-              color: "#222222",
-            }}
+            style={
+              !opposite
+                ? {
+                    fontWeight: 500,
+                    fontSize: "14px",
+                    lineHeight: "20px",
+                    color: "#222222",
+                  }
+                : {
+                    fontWeight: 500,
+                    fontSize: "14px",
+                    lineHeight: "20px",
+                    color: "#222222",
+                    position: "absolute",
+                    right: "38px",
+                  }
+            }
           >
             Sales Channels (8)
           </h1>
         </div>
       </div>
       <div
-        style={{
-          paddingInline: "20px",
-          display: "grid",
-          gridTemplateColumns: openSidebar
-            ? "repeat(6, 1fr)"
-            : "repeat(7, 1fr)",
-          gap: "12px",
-        }}
+        style={
+          !opposite
+            ? {
+                paddingInline: "20px",
+                display: "grid",
+                gridTemplateColumns: openSidebar
+                  ? "repeat(6, 1fr)"
+                  : "repeat(7, 1fr)",
+                gap: "12px",
+              }
+            : {
+                padding: "30px 20px",
+                display: "grid",
+                gridTemplateColumns: openSidebar
+                  ? "repeat(6, 1fr)"
+                  : "repeat(7, 1fr)",
+                gap: "12px",
+                direction: "rtl",
+              }
+        }
       >
         <div className="gridInner" onClick={() => handleSalesClick(shopify)}>
           <div

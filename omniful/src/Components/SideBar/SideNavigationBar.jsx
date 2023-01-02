@@ -1,4 +1,5 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import {
   AccordionBody,
   AccordionHeader,
@@ -20,7 +21,10 @@ import {
 import { Hubs } from "../Tabs/Hubs";
 import { Sales } from "../Tabs/Sales";
 import logo from "/omniful.png";
+
 export const SideNavigationBar = () => {
+  const state = useSelector((state) => state);
+  const { opposite } = state;
   const [openSidebar, setIsOpenSidebar] = useState(false);
   const [openTab, setOpenTab] = useState(false);
   const [activeTab, setActiveTab] = useState("1");
@@ -40,8 +44,480 @@ export const SideNavigationBar = () => {
     setOpenTab(false);
   };
   return (
-    <div className="sidebarMain">
-      <div className="sideBar">
+    <div
+      className="sidebarMain"
+      style={
+        opposite
+          ? {
+              position: "absolute",
+              right: 0,
+            }
+          : null
+      }
+    >
+      {opposite ? (
+        <div>
+          <Collapse
+            horizontal
+            isOpen={openSidebar}
+            className="collapseMainDiv"
+            style={
+              opposite
+                ? {
+                    borderRight: "none",
+                    borderLeft: "2px solid #5468FA1A",
+                  }
+                : null
+            }
+          >
+            <h1>Settings</h1>
+            <div
+              onClick={handleCollapse}
+              style={
+                !opposite
+                  ? {
+                      position: "relative",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      width: "25px",
+                      height: "24px",
+                      cursor: "pointer",
+                      border: "2px solid #EAECFB",
+                      boxShadow: "0px 0px 4px rgba(84, 104, 250, 0.25)",
+                      borderRadius: "4px",
+                      background: "white",
+                      top: "-38px",
+                      left: "252px",
+                    }
+                  : {
+                      position: "relative",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      width: "25px",
+                      height: "24px",
+                      cursor: "pointer",
+                      border: "2px solid #EAECFB",
+                      boxShadow: "0px 0px 4px rgba(84, 104, 250, 0.25)",
+                      borderRadius: "4px",
+                      background: "white",
+                      top: "-38px",
+                      left: "-15px",
+                      zIndex: 12,
+                    }
+              }
+            >
+              <span
+                style={{
+                  color: "#5468FA80",
+                  fontSize: "11px",
+                  margin: opposite ? "-2px" : "",
+                }}
+                className="material-icons"
+              >
+                {opposite ? "arrow_forward_ios" : "arrow_back_ios"}
+              </span>
+              <span
+                style={{
+                  color: "#5468FA80",
+                  fontSize: "10px",
+                  margin: opposite ? "-3px" : "-5px",
+                }}
+                className="material-icons"
+              >
+                {opposite ? "arrow_forward_ios" : "arrow_back_ios"}
+              </span>
+            </div>
+            <Card
+              style={{
+                width: "266px",
+                border: "#5468FA1A",
+                height: "100vh",
+              }}
+            >
+              <CardBody
+                style={{
+                  display: "flex",
+                  margin: 0,
+                  padding: 0,
+                }}
+              >
+                <UncontrolledAccordion
+                  style={{
+                    width: "266px",
+                    borderRight: "2px solid #5468FA1A",
+                  }}
+                  defaultOpen={["1"]}
+                  stayOpen
+                >
+                  <AccordionItem
+                    style={{
+                      border: "none",
+                    }}
+                  >
+                    <AccordionHeader targetId="1" id="accordion">
+                      <span
+                        className="material-icons-outlined"
+                        style={{
+                          marginLeft: 0,
+                          marginRight: "5px",
+                        }}
+                      >
+                        local_shipping
+                      </span>
+                      <span>Apps & Integration</span>
+                    </AccordionHeader>
+                    <AccordionBody
+                      onClick={handleOpenTab}
+                      accordionId="1"
+                      className="accordionBody"
+                      id="accordion"
+                    >
+                      <span
+                        className="material-icons-outlined"
+                        style={{
+                          marginLeft: "10px",
+                          marginRight: "5px",
+                        }}
+                      >
+                        local_shipping
+                      </span>
+                      <span>Sales channel Apps</span>
+                    </AccordionBody>
+                    <AccordionBody
+                      accordionId="1"
+                      className="accordionBody"
+                      id="accordion"
+                    >
+                      <span
+                        className="material-icons-outlined"
+                        style={{
+                          marginLeft: "10px",
+                          marginRight: "5px",
+                        }}
+                      >
+                        local_shipping
+                      </span>
+                      <span>Shipping Apps</span>
+                    </AccordionBody>
+                    <AccordionBody
+                      accordionId="1"
+                      className="accordionBody"
+                      id="accordion"
+                    >
+                      <span
+                        className="material-icons-outlined"
+                        style={{
+                          marginLeft: "10px",
+                          marginRight: "5px",
+                        }}
+                      >
+                        local_shipping
+                      </span>
+                      <span>POS Apps</span>
+                    </AccordionBody>
+                    <AccordionBody
+                      accordionId="1"
+                      className="accordionBody"
+                      id="accordion"
+                    >
+                      <span
+                        className="material-icons-outlined"
+                        style={{
+                          marginLeft: "10px",
+                          marginRight: "5px",
+                        }}
+                      >
+                        local_shipping
+                      </span>
+                      <span>ERP Apps</span>
+                    </AccordionBody>
+                    <AccordionBody
+                      accordionId="1"
+                      className="accordionBody"
+                      id="accordion"
+                    >
+                      <span
+                        className="material-icons-outlined"
+                        style={{
+                          marginLeft: "10px",
+                          marginRight: "5px",
+                        }}
+                      >
+                        local_shipping
+                      </span>
+                      <span>SMS</span>
+                    </AccordionBody>
+                    <AccordionBody
+                      accordionId="1"
+                      className="accordionBody"
+                      id="accordion"
+                    >
+                      <span
+                        className="material-icons-outlined"
+                        style={{
+                          marginLeft: "10px",
+                          marginRight: "5px",
+                        }}
+                      >
+                        local_shipping
+                      </span>
+                      <span>Payments</span>
+                    </AccordionBody>
+                    <AccordionBody
+                      accordionId="1"
+                      className="accordionBody"
+                      id="accordion"
+                    >
+                      <span
+                        className="material-icons-outlined"
+                        style={{
+                          marginLeft: "10px",
+                          marginRight: "5px",
+                        }}
+                      >
+                        local_shipping
+                      </span>
+                      <span>WhatsApp Business</span>
+                    </AccordionBody>
+                    <AccordionBody
+                      accordionId="1"
+                      className="accordionBody"
+                      id="accordion"
+                    >
+                      <span
+                        className="material-icons-outlined"
+                        style={{
+                          marginLeft: "10px",
+                          marginRight: "5px",
+                        }}
+                      >
+                        local_shipping
+                      </span>
+                      <span>Other Apps</span>
+                    </AccordionBody>
+                  </AccordionItem>
+                  <AccordionItem
+                    style={{
+                      border: "none",
+                    }}
+                  >
+                    <AccordionHeader targetId="2" id="accordion">
+                      <span
+                        className="material-icons-outlined"
+                        style={{
+                          marginLeft: 0,
+                          marginRight: "5px",
+                        }}
+                      >
+                        local_shipping
+                      </span>
+                      <span>Omniful App settings</span>
+                    </AccordionHeader>
+                    <AccordionBody
+                      accordionId="2"
+                      className="accordionBody"
+                      id="accordion"
+                    >
+                      <span
+                        className="material-icons-outlined"
+                        style={{
+                          marginLeft: "10px",
+                          marginRight: "5px",
+                        }}
+                      >
+                        local_shipping
+                      </span>
+                      <span>Picker App</span>
+                    </AccordionBody>
+                    <AccordionBody
+                      accordionId="2"
+                      className="accordionBody"
+                      id="accordion"
+                    >
+                      <span
+                        className="material-icons-outlined"
+                        style={{
+                          marginLeft: "10px",
+                          marginRight: "5px",
+                        }}
+                      >
+                        local_shipping
+                      </span>
+                      <span>Driver App</span>
+                    </AccordionBody>
+                    <AccordionBody
+                      accordionId="2"
+                      className="accordionBody"
+                      id="accordion"
+                    >
+                      <span
+                        className="material-icons-outlined"
+                        style={{
+                          marginLeft: "10px",
+                          marginRight: "5px",
+                        }}
+                      >
+                        local_shipping
+                      </span>
+                      <span>Put-Away & Inventory</span>
+                    </AccordionBody>
+                  </AccordionItem>
+                  <AccordionItem
+                    style={{
+                      border: "none",
+                    }}
+                  >
+                    <AccordionHeader targetId="3" id="accordion">
+                      <span
+                        className="material-icons-outlined"
+                        style={{
+                          marginLeft: 0,
+                          marginRight: "5px",
+                        }}
+                      >
+                        local_shipping
+                      </span>
+                      <span>Hub Management</span>
+                    </AccordionHeader>
+                    <AccordionBody
+                      onClick={handleHub}
+                      accordionId="3"
+                      className="accordionBody"
+                      id="accordion"
+                    >
+                      <span
+                        className="material-icons-outlined"
+                        style={{
+                          marginLeft: "10px",
+                          marginRight: "5px",
+                        }}
+                      >
+                        local_shipping
+                      </span>
+                      <span>Hubs</span>
+                    </AccordionBody>
+                    <AccordionBody
+                      accordionId="3"
+                      className="accordionBody"
+                      id="accordion"
+                    >
+                      <span
+                        className="material-icons-outlined"
+                        style={{
+                          marginLeft: "10px",
+                          marginRight: "5px",
+                        }}
+                      >
+                        local_shipping
+                      </span>
+                      <span>Locations</span>
+                    </AccordionBody>
+                    <AccordionBody
+                      accordionId="3"
+                      className="accordionBody"
+                      id="accordion"
+                    >
+                      <span
+                        className="material-icons-outlined"
+                        style={{
+                          marginLeft: "10px",
+                          marginRight: "5px",
+                        }}
+                      >
+                        local_shipping
+                      </span>
+                      <span>Bins</span>
+                    </AccordionBody>
+                    <AccordionBody
+                      accordionId="3"
+                      className="accordionBody"
+                      id="accordion"
+                    >
+                      <span
+                        className="material-icons-outlined"
+                        style={{
+                          marginLeft: "10px",
+                          marginRight: "5px",
+                        }}
+                      >
+                        local_shipping
+                      </span>
+                      <span>Consolidation area</span>
+                    </AccordionBody>
+                    <AccordionBody
+                      accordionId="3"
+                      className="accordionBody"
+                      id="accordion"
+                    >
+                      <span
+                        className="material-icons-outlined"
+                        style={{
+                          marginLeft: "10px",
+                          marginRight: "5px",
+                        }}
+                      >
+                        local_shipping
+                      </span>
+                      <span>Stations</span>
+                    </AccordionBody>
+                    <AccordionBody
+                      accordionId="3"
+                      className="accordionBody"
+                      id="accordion"
+                    >
+                      <span
+                        className="material-icons-outlined"
+                        style={{
+                          marginLeft: "10px",
+                          marginRight: "5px",
+                        }}
+                      >
+                        local_shipping
+                      </span>
+                      <span>Hub settings</span>
+                    </AccordionBody>
+                  </AccordionItem>
+                  <AccordionItem
+                    style={{
+                      border: "none",
+                    }}
+                  >
+                    <AccordionHeader targetId="4" id="accordion">
+                      <span
+                        className="material-icons-outlined"
+                        style={{
+                          marginLeft: 0,
+                          marginRight: "5px",
+                        }}
+                      >
+                        local_shipping
+                      </span>
+                      <span>Account settings</span>
+                    </AccordionHeader>
+                    <AccordionBody
+                      accordionId="4"
+                      className="accordionBody"
+                    ></AccordionBody>
+                  </AccordionItem>
+                </UncontrolledAccordion>
+              </CardBody>
+            </Card>
+          </Collapse>
+        </div>
+      ) : null}
+      <div
+        className="sideBar"
+        style={
+          opposite
+            ? {
+                borderLeft: "2px solid #5468fa1a",
+                borderRadius: "none",
+              }
+            : null
+        }
+      >
         <div className="sidebarImage">
           <img src={logo} alt="logo" />
         </div>
@@ -87,450 +563,483 @@ export const SideNavigationBar = () => {
           <span className="material-icons-outlined">logout</span>
         </div>
       </div>
-      <div>
-        <Collapse horizontal isOpen={openSidebar} className="collapseMainDiv">
-          <h1>Settings</h1>
-          <div
-            onClick={handleCollapse}
-            style={{
-              position: "relative",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              width: "25px",
-              height: "24px",
-              cursor: "pointer",
-              border: "2px solid #EAECFB",
-              boxShadow: "0px 0px 4px rgba(84, 104, 250, 0.25)",
-              borderRadius: "4px",
-              background: "white",
-              top: "-38px",
-              left: "252px",
-            }}
-          >
-            <span
+      {!opposite ? (
+        <div>
+          <Collapse horizontal isOpen={openSidebar} className="collapseMainDiv">
+            <h1>Settings</h1>
+            <div
+              onClick={handleCollapse}
               style={{
-                color: "#5468FA80",
-                fontSize: "11px",
-              }}
-              className="material-icons"
-            >
-              arrow_back_ios
-            </span>
-            <span
-              style={{
-                color: "#5468FA80",
-                fontSize: "10px",
-                margin: "-5px",
-              }}
-              className="material-icons"
-            >
-              arrow_back_ios
-            </span>
-          </div>
-          <Card
-            style={{
-              width: "266px",
-              border: "#5468FA1A",
-              height: "100vh",
-            }}
-          >
-            <CardBody
-              style={{
+                position: "relative",
                 display: "flex",
-                margin: 0,
-                padding: 0,
+                justifyContent: "center",
+                alignItems: "center",
+                width: "25px",
+                height: "24px",
+                cursor: "pointer",
+                border: "2px solid #EAECFB",
+                boxShadow: "0px 0px 4px rgba(84, 104, 250, 0.25)",
+                borderRadius: "4px",
+                background: "white",
+                top: "-38px",
+                left: "252px",
               }}
             >
-              <UncontrolledAccordion
+              <span
                 style={{
-                  width: "266px",
-                  borderRight: "2px solid #5468FA1A",
+                  color: "#5468FA80",
+                  fontSize: "11px",
                 }}
-                defaultOpen={["1"]}
-                stayOpen
+                className="material-icons"
               >
-                <AccordionItem
+                arrow_back_ios
+              </span>
+              <span
+                style={{
+                  color: "#5468FA80",
+                  fontSize: "10px",
+                  margin: "-5px",
+                }}
+                className="material-icons"
+              >
+                arrow_back_ios
+              </span>
+            </div>
+            <Card
+              style={{
+                width: "266px",
+                border: "#5468FA1A",
+                height: "100vh",
+              }}
+            >
+              <CardBody
+                style={{
+                  display: "flex",
+                  margin: 0,
+                  padding: 0,
+                }}
+              >
+                <UncontrolledAccordion
                   style={{
-                    border: "none",
+                    width: "266px",
+                    borderRight: "2px solid #5468FA1A",
                   }}
+                  defaultOpen={["1"]}
+                  stayOpen
                 >
-                  <AccordionHeader targetId="1" id="accordion">
-                    <span
-                      className="material-icons-outlined"
-                      style={{
-                        marginLeft: 0,
-                        marginRight: "5px",
-                      }}
-                    >
-                      local_shipping
-                    </span>
-                    <span>Apps & Integration</span>
-                  </AccordionHeader>
-                  <AccordionBody
-                    onClick={handleOpenTab}
-                    accordionId="1"
-                    className="accordionBody"
-                    id="accordion"
+                  <AccordionItem
+                    style={{
+                      border: "none",
+                    }}
                   >
-                    <span
-                      className="material-icons-outlined"
-                      style={{
-                        marginLeft: "10px",
-                        marginRight: "5px",
-                      }}
+                    <AccordionHeader targetId="1" id="accordion">
+                      <span
+                        className="material-icons-outlined"
+                        style={{
+                          marginLeft: 0,
+                          marginRight: "5px",
+                        }}
+                      >
+                        local_shipping
+                      </span>
+                      <span>Apps & Integration</span>
+                    </AccordionHeader>
+                    <AccordionBody
+                      onClick={handleOpenTab}
+                      accordionId="1"
+                      className="accordionBody"
+                      id="accordion"
                     >
-                      local_shipping
-                    </span>
-                    <span>Sales channel Apps</span>
-                  </AccordionBody>
-                  <AccordionBody
-                    accordionId="1"
-                    className="accordionBody"
-                    id="accordion"
+                      <span
+                        className="material-icons-outlined"
+                        style={{
+                          marginLeft: "10px",
+                          marginRight: "5px",
+                        }}
+                      >
+                        local_shipping
+                      </span>
+                      <span>Sales channel Apps</span>
+                    </AccordionBody>
+                    <AccordionBody
+                      accordionId="1"
+                      className="accordionBody"
+                      id="accordion"
+                    >
+                      <span
+                        className="material-icons-outlined"
+                        style={{
+                          marginLeft: "10px",
+                          marginRight: "5px",
+                        }}
+                      >
+                        local_shipping
+                      </span>
+                      <span>Shipping Apps</span>
+                    </AccordionBody>
+                    <AccordionBody
+                      accordionId="1"
+                      className="accordionBody"
+                      id="accordion"
+                    >
+                      <span
+                        className="material-icons-outlined"
+                        style={{
+                          marginLeft: "10px",
+                          marginRight: "5px",
+                        }}
+                      >
+                        local_shipping
+                      </span>
+                      <span>POS Apps</span>
+                    </AccordionBody>
+                    <AccordionBody
+                      accordionId="1"
+                      className="accordionBody"
+                      id="accordion"
+                    >
+                      <span
+                        className="material-icons-outlined"
+                        style={{
+                          marginLeft: "10px",
+                          marginRight: "5px",
+                        }}
+                      >
+                        local_shipping
+                      </span>
+                      <span>ERP Apps</span>
+                    </AccordionBody>
+                    <AccordionBody
+                      accordionId="1"
+                      className="accordionBody"
+                      id="accordion"
+                    >
+                      <span
+                        className="material-icons-outlined"
+                        style={{
+                          marginLeft: "10px",
+                          marginRight: "5px",
+                        }}
+                      >
+                        local_shipping
+                      </span>
+                      <span>SMS</span>
+                    </AccordionBody>
+                    <AccordionBody
+                      accordionId="1"
+                      className="accordionBody"
+                      id="accordion"
+                    >
+                      <span
+                        className="material-icons-outlined"
+                        style={{
+                          marginLeft: "10px",
+                          marginRight: "5px",
+                        }}
+                      >
+                        local_shipping
+                      </span>
+                      <span>Payments</span>
+                    </AccordionBody>
+                    <AccordionBody
+                      accordionId="1"
+                      className="accordionBody"
+                      id="accordion"
+                    >
+                      <span
+                        className="material-icons-outlined"
+                        style={{
+                          marginLeft: "10px",
+                          marginRight: "5px",
+                        }}
+                      >
+                        local_shipping
+                      </span>
+                      <span>WhatsApp Business</span>
+                    </AccordionBody>
+                    <AccordionBody
+                      accordionId="1"
+                      className="accordionBody"
+                      id="accordion"
+                    >
+                      <span
+                        className="material-icons-outlined"
+                        style={{
+                          marginLeft: "10px",
+                          marginRight: "5px",
+                        }}
+                      >
+                        local_shipping
+                      </span>
+                      <span>Other Apps</span>
+                    </AccordionBody>
+                  </AccordionItem>
+                  <AccordionItem
+                    style={{
+                      border: "none",
+                    }}
                   >
-                    <span
-                      className="material-icons-outlined"
-                      style={{
-                        marginLeft: "10px",
-                        marginRight: "5px",
-                      }}
+                    <AccordionHeader targetId="2" id="accordion">
+                      <span
+                        className="material-icons-outlined"
+                        style={{
+                          marginLeft: 0,
+                          marginRight: "5px",
+                        }}
+                      >
+                        local_shipping
+                      </span>
+                      <span>Omniful App settings</span>
+                    </AccordionHeader>
+                    <AccordionBody
+                      accordionId="2"
+                      className="accordionBody"
+                      id="accordion"
                     >
-                      local_shipping
-                    </span>
-                    <span>Shipping Apps</span>
-                  </AccordionBody>
-                  <AccordionBody
-                    accordionId="1"
-                    className="accordionBody"
-                    id="accordion"
+                      <span
+                        className="material-icons-outlined"
+                        style={{
+                          marginLeft: "10px",
+                          marginRight: "5px",
+                        }}
+                      >
+                        local_shipping
+                      </span>
+                      <span>Picker App</span>
+                    </AccordionBody>
+                    <AccordionBody
+                      accordionId="2"
+                      className="accordionBody"
+                      id="accordion"
+                    >
+                      <span
+                        className="material-icons-outlined"
+                        style={{
+                          marginLeft: "10px",
+                          marginRight: "5px",
+                        }}
+                      >
+                        local_shipping
+                      </span>
+                      <span>Driver App</span>
+                    </AccordionBody>
+                    <AccordionBody
+                      accordionId="2"
+                      className="accordionBody"
+                      id="accordion"
+                    >
+                      <span
+                        className="material-icons-outlined"
+                        style={{
+                          marginLeft: "10px",
+                          marginRight: "5px",
+                        }}
+                      >
+                        local_shipping
+                      </span>
+                      <span>Put-Away & Inventory</span>
+                    </AccordionBody>
+                  </AccordionItem>
+                  <AccordionItem
+                    style={{
+                      border: "none",
+                    }}
                   >
-                    <span
-                      className="material-icons-outlined"
-                      style={{
-                        marginLeft: "10px",
-                        marginRight: "5px",
-                      }}
+                    <AccordionHeader targetId="3" id="accordion">
+                      <span
+                        className="material-icons-outlined"
+                        style={{
+                          marginLeft: 0,
+                          marginRight: "5px",
+                        }}
+                      >
+                        local_shipping
+                      </span>
+                      <span>Hub Management</span>
+                    </AccordionHeader>
+                    <AccordionBody
+                      onClick={handleHub}
+                      accordionId="3"
+                      className="accordionBody"
+                      id="accordion"
                     >
-                      local_shipping
-                    </span>
-                    <span>POS Apps</span>
-                  </AccordionBody>
-                  <AccordionBody
-                    accordionId="1"
-                    className="accordionBody"
-                    id="accordion"
+                      <span
+                        className="material-icons-outlined"
+                        style={{
+                          marginLeft: "10px",
+                          marginRight: "5px",
+                        }}
+                      >
+                        local_shipping
+                      </span>
+                      <span>Hubs</span>
+                    </AccordionBody>
+                    <AccordionBody
+                      accordionId="3"
+                      className="accordionBody"
+                      id="accordion"
+                    >
+                      <span
+                        className="material-icons-outlined"
+                        style={{
+                          marginLeft: "10px",
+                          marginRight: "5px",
+                        }}
+                      >
+                        local_shipping
+                      </span>
+                      <span>Locations</span>
+                    </AccordionBody>
+                    <AccordionBody
+                      accordionId="3"
+                      className="accordionBody"
+                      id="accordion"
+                    >
+                      <span
+                        className="material-icons-outlined"
+                        style={{
+                          marginLeft: "10px",
+                          marginRight: "5px",
+                        }}
+                      >
+                        local_shipping
+                      </span>
+                      <span>Bins</span>
+                    </AccordionBody>
+                    <AccordionBody
+                      accordionId="3"
+                      className="accordionBody"
+                      id="accordion"
+                    >
+                      <span
+                        className="material-icons-outlined"
+                        style={{
+                          marginLeft: "10px",
+                          marginRight: "5px",
+                        }}
+                      >
+                        local_shipping
+                      </span>
+                      <span>Consolidation area</span>
+                    </AccordionBody>
+                    <AccordionBody
+                      accordionId="3"
+                      className="accordionBody"
+                      id="accordion"
+                    >
+                      <span
+                        className="material-icons-outlined"
+                        style={{
+                          marginLeft: "10px",
+                          marginRight: "5px",
+                        }}
+                      >
+                        local_shipping
+                      </span>
+                      <span>Stations</span>
+                    </AccordionBody>
+                    <AccordionBody
+                      accordionId="3"
+                      className="accordionBody"
+                      id="accordion"
+                    >
+                      <span
+                        className="material-icons-outlined"
+                        style={{
+                          marginLeft: "10px",
+                          marginRight: "5px",
+                        }}
+                      >
+                        local_shipping
+                      </span>
+                      <span>Hub settings</span>
+                    </AccordionBody>
+                  </AccordionItem>
+                  <AccordionItem
+                    style={{
+                      border: "none",
+                    }}
                   >
-                    <span
-                      className="material-icons-outlined"
-                      style={{
-                        marginLeft: "10px",
-                        marginRight: "5px",
-                      }}
-                    >
-                      local_shipping
-                    </span>
-                    <span>ERP Apps</span>
-                  </AccordionBody>
-                  <AccordionBody
-                    accordionId="1"
-                    className="accordionBody"
-                    id="accordion"
-                  >
-                    <span
-                      className="material-icons-outlined"
-                      style={{
-                        marginLeft: "10px",
-                        marginRight: "5px",
-                      }}
-                    >
-                      local_shipping
-                    </span>
-                    <span>SMS</span>
-                  </AccordionBody>
-                  <AccordionBody
-                    accordionId="1"
-                    className="accordionBody"
-                    id="accordion"
-                  >
-                    <span
-                      className="material-icons-outlined"
-                      style={{
-                        marginLeft: "10px",
-                        marginRight: "5px",
-                      }}
-                    >
-                      local_shipping
-                    </span>
-                    <span>Payments</span>
-                  </AccordionBody>
-                  <AccordionBody
-                    accordionId="1"
-                    className="accordionBody"
-                    id="accordion"
-                  >
-                    <span
-                      className="material-icons-outlined"
-                      style={{
-                        marginLeft: "10px",
-                        marginRight: "5px",
-                      }}
-                    >
-                      local_shipping
-                    </span>
-                    <span>WhatsApp Business</span>
-                  </AccordionBody>
-                  <AccordionBody
-                    accordionId="1"
-                    className="accordionBody"
-                    id="accordion"
-                  >
-                    <span
-                      className="material-icons-outlined"
-                      style={{
-                        marginLeft: "10px",
-                        marginRight: "5px",
-                      }}
-                    >
-                      local_shipping
-                    </span>
-                    <span>Other Apps</span>
-                  </AccordionBody>
-                </AccordionItem>
-                <AccordionItem
-                  style={{
-                    border: "none",
-                  }}
-                >
-                  <AccordionHeader targetId="2" id="accordion">
-                    <span
-                      className="material-icons-outlined"
-                      style={{
-                        marginLeft: 0,
-                        marginRight: "5px",
-                      }}
-                    >
-                      local_shipping
-                    </span>
-                    <span>Omniful App settings</span>
-                  </AccordionHeader>
-                  <AccordionBody
-                    accordionId="2"
-                    className="accordionBody"
-                    id="accordion"
-                  >
-                    <span
-                      className="material-icons-outlined"
-                      style={{
-                        marginLeft: "10px",
-                        marginRight: "5px",
-                      }}
-                    >
-                      local_shipping
-                    </span>
-                    <span>Picker App</span>
-                  </AccordionBody>
-                  <AccordionBody
-                    accordionId="2"
-                    className="accordionBody"
-                    id="accordion"
-                  >
-                    <span
-                      className="material-icons-outlined"
-                      style={{
-                        marginLeft: "10px",
-                        marginRight: "5px",
-                      }}
-                    >
-                      local_shipping
-                    </span>
-                    <span>Driver App</span>
-                  </AccordionBody>
-                  <AccordionBody
-                    accordionId="2"
-                    className="accordionBody"
-                    id="accordion"
-                  >
-                    <span
-                      className="material-icons-outlined"
-                      style={{
-                        marginLeft: "10px",
-                        marginRight: "5px",
-                      }}
-                    >
-                      local_shipping
-                    </span>
-                    <span>Put-Away & Inventory</span>
-                  </AccordionBody>
-                </AccordionItem>
-                <AccordionItem
-                  style={{
-                    border: "none",
-                  }}
-                >
-                  <AccordionHeader targetId="3" id="accordion">
-                    <span
-                      className="material-icons-outlined"
-                      style={{
-                        marginLeft: 0,
-                        marginRight: "5px",
-                      }}
-                    >
-                      local_shipping
-                    </span>
-                    <span>Hub Management</span>
-                  </AccordionHeader>
-                  <AccordionBody
-                    onClick={handleHub}
-                    accordionId="3"
-                    className="accordionBody"
-                    id="accordion"
-                  >
-                    <span
-                      className="material-icons-outlined"
-                      style={{
-                        marginLeft: "10px",
-                        marginRight: "5px",
-                      }}
-                    >
-                      local_shipping
-                    </span>
-                    <span>Hubs</span>
-                  </AccordionBody>
-                  <AccordionBody
-                    accordionId="3"
-                    className="accordionBody"
-                    id="accordion"
-                  >
-                    <span
-                      className="material-icons-outlined"
-                      style={{
-                        marginLeft: "10px",
-                        marginRight: "5px",
-                      }}
-                    >
-                      local_shipping
-                    </span>
-                    <span>Locations</span>
-                  </AccordionBody>
-                  <AccordionBody
-                    accordionId="3"
-                    className="accordionBody"
-                    id="accordion"
-                  >
-                    <span
-                      className="material-icons-outlined"
-                      style={{
-                        marginLeft: "10px",
-                        marginRight: "5px",
-                      }}
-                    >
-                      local_shipping
-                    </span>
-                    <span>Bins</span>
-                  </AccordionBody>
-                  <AccordionBody
-                    accordionId="3"
-                    className="accordionBody"
-                    id="accordion"
-                  >
-                    <span
-                      className="material-icons-outlined"
-                      style={{
-                        marginLeft: "10px",
-                        marginRight: "5px",
-                      }}
-                    >
-                      local_shipping
-                    </span>
-                    <span>Consolidation area</span>
-                  </AccordionBody>
-                  <AccordionBody
-                    accordionId="3"
-                    className="accordionBody"
-                    id="accordion"
-                  >
-                    <span
-                      className="material-icons-outlined"
-                      style={{
-                        marginLeft: "10px",
-                        marginRight: "5px",
-                      }}
-                    >
-                      local_shipping
-                    </span>
-                    <span>Stations</span>
-                  </AccordionBody>
-                  <AccordionBody
-                    accordionId="3"
-                    className="accordionBody"
-                    id="accordion"
-                  >
-                    <span
-                      className="material-icons-outlined"
-                      style={{
-                        marginLeft: "10px",
-                        marginRight: "5px",
-                      }}
-                    >
-                      local_shipping
-                    </span>
-                    <span>Hub settings</span>
-                  </AccordionBody>
-                </AccordionItem>
-                <AccordionItem
-                  style={{
-                    border: "none",
-                  }}
-                >
-                  <AccordionHeader targetId="4" id="accordion">
-                    <span
-                      className="material-icons-outlined"
-                      style={{
-                        marginLeft: 0,
-                        marginRight: "5px",
-                      }}
-                    >
-                      local_shipping
-                    </span>
-                    <span>Account settings</span>
-                  </AccordionHeader>
-                  <AccordionBody
-                    accordionId="4"
-                    className="accordionBody"
-                  ></AccordionBody>
-                </AccordionItem>
-              </UncontrolledAccordion>
-            </CardBody>
-          </Card>
-        </Collapse>
-      </div>
+                    <AccordionHeader targetId="4" id="accordion">
+                      <span
+                        className="material-icons-outlined"
+                        style={{
+                          marginLeft: 0,
+                          marginRight: "5px",
+                        }}
+                      >
+                        local_shipping
+                      </span>
+                      <span>Account settings</span>
+                    </AccordionHeader>
+                    <AccordionBody
+                      accordionId="4"
+                      className="accordionBody"
+                    ></AccordionBody>
+                  </AccordionItem>
+                </UncontrolledAccordion>
+              </CardBody>
+            </Card>
+          </Collapse>
+        </div>
+      ) : null}
       {openTab ? (
         <div
-          style={{
-            width: openSidebar ? "78%" : "120%",
-            transition: "all 0.3s linear",
-            backgroundColor: "#fafafa",
-          }}
+          style={
+            !opposite
+              ? {
+                  width: openSidebar ? "78%" : "120%",
+                  transition: "all 0.3s linear",
+                  backgroundColor: "#fafafa",
+                }
+              : {
+                  width: openSidebar ? "1202px" : "1467px",
+                  height: "100vh",
+                  transition: "all 0.3s linear",
+                  backgroundColor: "#fafafa",
+                  position: "absolute",
+                  right: openSidebar ? "335px" : "70px",
+                }
+          }
         >
           <Fade>
             <h3
-              style={{
-                margin: "26px 0 0 16px",
-                fontWeight: 500,
-                fontSize: "16px",
-                lineHeight: "20px",
-              }}
+              style={
+                !opposite
+                  ? {
+                      margin: "26px 0 0 16px",
+                      fontWeight: 500,
+                      fontSize: "16px",
+                      lineHeight: "20px",
+                    }
+                  : {
+                      margin: "26px 0 0 16px",
+                      fontWeight: 500,
+                      fontSize: "16px",
+                      lineHeight: "20px",
+                      position: "absolute",
+                      right: "25px",
+                    }
+              }
             >
               Sales channel Apps
             </h3>
             <Nav
               tabs
-              style={{
-                padding: "14px 0 0 16px",
-                cursor: "pointer",
-                borderBottom: "1px solid #5468FA1A",
-              }}
+              horizontal={opposite ? "end" : ""}
+              style={
+                !opposite
+                  ? {
+                      padding: "14px 0 0 16px",
+                      cursor: "pointer",
+                      borderBottom: "1px solid #5468FA1A",
+                    }
+                  : {
+                      padding: "60px 16px 0 0px",
+                      cursor: "pointer",
+                      borderBottom: "1px solid #5468FA1A",
+                    }
+              }
             >
               <NavItem onClick={() => handleTabPane("1")}>
                 <NavLink

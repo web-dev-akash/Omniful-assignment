@@ -14,12 +14,11 @@ import { setOpposite } from "../../Redux/action";
 
 export const NavigationBar = () => {
   const state = useSelector((state) => state);
-  let { opposite } = state;
+  const { opposite } = state;
   const dispatch = useDispatch();
   const handleOpposite = () => {
     opposite ? dispatch(setOpposite(false)) : dispatch(setOpposite(true));
   };
-  console.log(opposite);
   return (
     <div>
       <nav className="navbarDiv">

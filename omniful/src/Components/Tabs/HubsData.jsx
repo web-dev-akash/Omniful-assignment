@@ -6,18 +6,28 @@ export const HubsData = ({ openSidebar }) => {
   const data = hubsData;
   const dispatch = useDispatch();
   const state = useSelector((state) => state);
-  const { hubs } = state;
+  const { hubs, opposite } = state;
   useEffect(() => {
     dispatch(getHubs(data));
   }, []);
   return (
     <div
-      style={{
-        margin: "26px 0 0 16px",
-        display: "flex",
-        transition: "all 0.3s ease-in-out",
-        gap: openSidebar ? "10px" : "150px",
-      }}
+      style={
+        !opposite
+          ? {
+              margin: "26px 0 0 16px",
+              display: "flex",
+              transition: "all 0.3s ease-in-out",
+              gap: openSidebar ? "10px" : "150px",
+            }
+          : {
+              margin: "26px 0 0 16px",
+              display: "flex",
+              flexDirection: "row-reverse",
+              transition: "all 0.3s ease-in-out",
+              gap: openSidebar ? "10px" : "150px",
+            }
+      }
     >
       {hubs.map(({ name, status, address }) => (
         <div
