@@ -12,11 +12,12 @@ import {
 } from "reactstrap";
 import { HubsData } from "./HubsData";
 
-export const Hubs = () => {
+export const Hubs = ({ openSidebar }) => {
   return (
     <div
       style={{
-        width: "78%",
+        width: openSidebar ? "78%" : "120%",
+        transition: "all 0.3s linear",
         backgroundColor: "#fafafa",
       }}
     >
@@ -60,7 +61,7 @@ export const Hubs = () => {
             <TabPane tabId="1">
               <Row>
                 <Col sm="12">
-                  <HubsData />
+                  <HubsData openSidebar={openSidebar} />
                 </Col>
               </Row>
             </TabPane>

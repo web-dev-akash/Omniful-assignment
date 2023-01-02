@@ -9,8 +9,17 @@ import {
   DropdownToggle,
   UncontrolledDropdown,
 } from "reactstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { setOpposite } from "../../Redux/action";
 
 export const NavigationBar = () => {
+  const state = useSelector((state) => state);
+  let { opposite } = state;
+  const dispatch = useDispatch();
+  const handleOpposite = () => {
+    opposite ? dispatch(setOpposite(false)) : dispatch(setOpposite(true));
+  };
+  console.log(opposite);
   return (
     <div>
       <nav className="navbarDiv">
@@ -23,17 +32,17 @@ export const NavigationBar = () => {
           <div>
             <UncontrolledDropdown className="me-2" direction="down">
               <DropdownToggle caret id="dropDown">
-                <img src={flag1} alt="flag-pic" />
-                English
+                <img src={opposite ? flag3 : flag1} alt="flag-pic" />
+                {opposite ? "Arabic" : "English"}
               </DropdownToggle>
               <DropdownMenu>
                 <DropdownItem id="dropDownFlag">
                   <img src={flag2} alt="flag-pic" />
                   Hindi
                 </DropdownItem>
-                <DropdownItem id="dropDownFlag">
-                  <img src={flag3} alt="flag-pic" />
-                  Arabic
+                <DropdownItem id="dropDownFlag" onClick={handleOpposite}>
+                  <img src={opposite ? flag1 : flag3} alt="flag-pic" />
+                  {opposite ? "English" : "Arabic"}
                 </DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>

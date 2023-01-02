@@ -1,7 +1,12 @@
 import { useDispatch } from "react-redux";
-import { GET_HUBS } from "./actionTypes";
+import { GET_ARABIC, GET_HUBS } from "./actionTypes";
 export const getHubs = (payload) => ({
   type: GET_HUBS,
+  payload,
+});
+
+export const setOpposite = (payload) => ({
+  type: GET_ARABIC,
   payload,
 });
 

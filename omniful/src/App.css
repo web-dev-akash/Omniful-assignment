@@ -168,12 +168,6 @@ body {
 
 /* -----------Sales----------- */
 
-.gridMainDiv {
-  padding-inline: 20px;
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 12px;
-}
 .gridInner {
   display: flex;
   flex-direction: column;

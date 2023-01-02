@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import {
-  Accordion,
   AccordionBody,
   AccordionHeader,
   AccordionItem,
@@ -28,8 +27,6 @@ export const SideNavigationBar = () => {
   const [hub, setHub] = useState(false);
   const handleCollapse = () => {
     setIsOpenSidebar(!openSidebar);
-    setOpenTab(false);
-    setHub(false);
   };
   const handleOpenTab = () => {
     setOpenTab(!openTab);
@@ -71,10 +68,8 @@ export const SideNavigationBar = () => {
             account_balance_wallet
           </span>
         </div>
-        <div>
-          <span onClick={handleCollapse} className="material-icons-outlined">
-            settings
-          </span>
+        <div onClick={handleCollapse}>
+          <span className="material-icons-outlined">settings</span>
         </div>
         <div>
           <span className="material-icons-outlined">group</span>
@@ -513,7 +508,8 @@ export const SideNavigationBar = () => {
       {openTab ? (
         <div
           style={{
-            width: "78%",
+            width: openSidebar ? "78%" : "120%",
+            transition: "all 0.3s linear",
             backgroundColor: "#fafafa",
           }}
         >
@@ -592,7 +588,7 @@ export const SideNavigationBar = () => {
               <TabPane tabId="1">
                 <Row>
                   <Col sm="12">
-                    <Sales />
+                    <Sales openSidebar={openSidebar} />
                   </Col>
                 </Row>
               </TabPane>
@@ -600,7 +596,7 @@ export const SideNavigationBar = () => {
           </Fade>
         </div>
       ) : null}
-      {hub ? <Hubs /> : null}
+      {hub ? <Hubs openSidebar={openSidebar} /> : null}
     </div>
   );
 };

@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getHubs, hubsData } from "../../Redux/action";
 
-export const HubsData = () => {
+export const HubsData = ({ openSidebar }) => {
   const data = hubsData;
   const dispatch = useDispatch();
   const state = useSelector((state) => state);
@@ -15,13 +15,15 @@ export const HubsData = () => {
       style={{
         margin: "26px 0 0 16px",
         display: "flex",
-        gap: "10px",
+        transition: "all 0.3s ease-in-out",
+        gap: openSidebar ? "10px" : "150px",
       }}
     >
       {hubs.map(({ name, status, address }) => (
         <div
           key={name}
           style={{
+            cursor: "pointer",
             width: "374px",
             padding: "16px",
             background: "white",

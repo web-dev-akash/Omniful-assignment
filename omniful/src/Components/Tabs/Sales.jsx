@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import shopify from "/shopify.png";
 import eldokan from "/eldokan.png";
 import zid from "/zid.png";
@@ -7,8 +7,16 @@ import woo from "/woo.png";
 import magento from "/magento.png";
 import opencart from "/opencart.png";
 import arabic from "/arabic.png";
+import { SalesSidebar } from "./SalesSidebar";
 
-export const Sales = () => {
+export const Sales = ({ openSidebar }) => {
+  const [image, setImage] = useState("");
+  const [salesTab, setSalesTab] = useState(false);
+
+  const handleSalesClick = (image) => {
+    setImage(image);
+    setSalesTab(!salesTab);
+  };
   return (
     <div>
       <div
@@ -38,8 +46,17 @@ export const Sales = () => {
           </h1>
         </div>
       </div>
-      <div className="gridMainDiv">
-        <div className="gridInner">
+      <div
+        style={{
+          paddingInline: "20px",
+          display: "grid",
+          gridTemplateColumns: openSidebar
+            ? "repeat(6, 1fr)"
+            : "repeat(7, 1fr)",
+          gap: "12px",
+        }}
+      >
+        <div className="gridInner" onClick={() => handleSalesClick(shopify)}>
           <div
             style={{
               width: "57px",
@@ -56,13 +73,13 @@ export const Sales = () => {
             Active
           </div>
 
-          <img src={shopify} alt="" />
+          <img src={shopify} alt="sales-pic" />
           <div>
             <p>Custom Name</p>
             <h3>Shopify</h3>
           </div>
         </div>
-        <div className="gridInner">
+        <div className="gridInner" onClick={() => handleSalesClick(eldokan)}>
           <div
             style={{
               width: "57px",
@@ -78,13 +95,13 @@ export const Sales = () => {
           >
             Active
           </div>
-          <img src={eldokan} alt="" />
+          <img src={eldokan} alt="sales-pic" />
           <div>
             <p>Custom Name</p>
             <h3>Dokan</h3>
           </div>
         </div>
-        <div className="gridInner">
+        <div className="gridInner" onClick={() => handleSalesClick(zid)}>
           <div
             style={{
               width: "57px",
@@ -100,13 +117,13 @@ export const Sales = () => {
           >
             Active
           </div>
-          <img src={zid} alt="" />
+          <img src={zid} alt="sales-pic" />
           <div>
             <p>Custom Name</p>
             <h3>Zid</h3>
           </div>
         </div>
-        <div className="gridInner">
+        <div className="gridInner" onClick={() => handleSalesClick(panda)}>
           <div
             style={{
               width: "57px",
@@ -122,13 +139,13 @@ export const Sales = () => {
           >
             Active
           </div>
-          <img src={panda} alt="" />
+          <img src={panda} alt="sales-pic" />
           <div>
             <p>Custom Name</p>
             <h3>Panda</h3>
           </div>
         </div>
-        <div className="gridInner">
+        <div className="gridInner" onClick={() => handleSalesClick(woo)}>
           <div
             style={{
               width: "57px",
@@ -144,13 +161,13 @@ export const Sales = () => {
           >
             Active
           </div>
-          <img src={woo} alt="" />
+          <img src={woo} alt="sales-pic" />
           <div>
             <p>Custom Name</p>
             <h3>Woocommerce</h3>
           </div>
         </div>
-        <div className="gridInner">
+        <div className="gridInner" onClick={() => handleSalesClick(magento)}>
           <div
             style={{
               width: "57px",
@@ -166,13 +183,13 @@ export const Sales = () => {
           >
             Inactive
           </div>
-          <img src={magento} alt="" />
+          <img src={magento} alt="sales-pic" />
           <div>
             <p>Custom Name</p>
             <h3>Magento</h3>
           </div>
         </div>
-        <div className="gridInner">
+        <div className="gridInner" onClick={() => handleSalesClick(opencart)}>
           <div
             style={{
               width: "57px",
@@ -188,13 +205,13 @@ export const Sales = () => {
           >
             Active
           </div>
-          <img src={opencart} alt="" />
+          <img src={opencart} alt="sales-pic" />
           <div>
             <p>Custom Name</p>
             <h3>Opencart</h3>
           </div>
         </div>
-        <div className="gridInner">
+        <div className="gridInner" onClick={() => handleSalesClick(arabic)}>
           <div
             style={{
               width: "57px",
@@ -210,13 +227,14 @@ export const Sales = () => {
           >
             Active
           </div>
-          <img src={arabic} alt="" />
+          <img src={arabic} alt="sales-pic" />
           <div>
             <p>Custom Name</p>
             <h3>Salla</h3>
           </div>
         </div>
       </div>
+      {salesTab ? <SalesSidebar image={image} salesTab={salesTab} /> : null}
     </div>
   );
 };
